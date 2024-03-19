@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types';
 import './Board.css'
 
-function Board({ deck, setDeck, setClicks }) {
+function Board({ deck, setDeck, setScore }) {
     const dimIndices = [...Array(5).keys()]
 
     function handleCardClick(index) {
         const thisCard = deck[index];
         if (!thisCard.isClicked) {
-            setClicks(prevClicks => prevClicks + 1)
+            setScore(prevScore => prevScore + 1)
             const deckCopy = deck.map(card => {
                 if (card.id === thisCard.id) {
                     const newCard = { ...thisCard, isClicked: true };
-                    console.log(newCard)
                     return newCard
                 }
                 else { return card }
@@ -56,7 +55,7 @@ function Board({ deck, setDeck, setClicks }) {
 }
 
 Board.propTypes = {
-    setClicks: PropTypes.func,
+    setScore: PropTypes.func,
     deck: PropTypes.array,
     setDeck: PropTypes.func,
 }

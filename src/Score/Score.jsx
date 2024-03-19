@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 
-function Score({ clicks }) {
+function Score({ score }) {
     return (
-        <p>Score: {clicks}</p>
+        <p>Score: {score}</p>
     )
 }
 
 export default Score;
 
 Score.propTypes = {
-    clicks: PropTypes.number
+    score : PropTypes.number
 }
