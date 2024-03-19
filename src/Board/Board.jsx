@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 import './Board.css'
 
-function Board({ setClicks }) {
-
-    let cardDeck = [...Array(25).keys()];
-    let dimIndices = [...Array(5).keys()]
+function Board({ deck, setDeck, setClicks }) {
+    const dimIndices = [...Array(5).keys()]
 
     return (
         <table>
@@ -15,10 +13,20 @@ function Board({ setClicks }) {
                             <td
                                 key={(5 * rowIndex) + colIndex}
                                 onClick={() => {
-                                    setClicks(prevClicks => prevClicks + 1)
+                                    const index = (5 * rowIndex) + colIndex;
+                                    const card = deck[index];
+                                    if (!card.isClicked()) {
+                                        setClicks(prevClicks => prevClicks + 1)
+                                        setDeck(deck.map(oldCard => {
+                                            if (oldCard.id === card.id) {
+                                                return {...oldCard, isClicked: true}
+                                            }
+                                            else { return oldCard }
+                                        }))
+                                    }  
                                 }}
                             >
-                                {cardDeck[(5 * rowIndex) + colIndex] + 1}
+                                {deck[(5 * rowIndex) + colIndex].value}
                             </td>
                         ))}
                     </tr>
@@ -29,7 +37,9 @@ function Board({ setClicks }) {
 }
 
 Board.propTypes = {
-    setClicks: PropTypes.func
+    setClicks : PropTypes.func,
+    deck: PropTypes.array,
+    setDeck: PropTypes.func,
 }
 
 export default Board;
