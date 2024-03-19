@@ -5,7 +5,7 @@ function Card(value) {
     return {
         id: uuid(),
         value,
-        isClicked() { return isClicked }
+        isClicked
     }
 }
 

@@ -12,23 +12,6 @@ function App() {
   });
   const [clicks, setClicks] = useState(0);
 
-  function shuffleDeck() {
-    const deckCopy = [...deck]
-    let currentIndex = deckCopy.length;
-    let randomIndex;
-
-    while (currentIndex > 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [deckCopy[currentIndex], deckCopy[randomIndex]] = [
-        deckCopy[randomIndex], deckCopy[currentIndex]];
-    }
-
-    setDeck(deckCopy)
-  }
-
 
   return (
     <>
@@ -36,7 +19,6 @@ function App() {
       <Board 
         deck={deck}
         setDeck={setDeck} 
-        shuffleDeck={shuffleDeck} 
         setClicks={setClicks} />
     </>
   )
