@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './Board.css'
 
-function Board({ deck, setDeck, setScore }) {
+function Board({ deck, setDeck, setScore, setHasLost }) {
     const dimIndices = [...Array(5).keys()]
 
     function handleCardClick(index) {
@@ -28,6 +28,9 @@ function Board({ deck, setDeck, setScore }) {
             }
 
             setDeck(deckCopy)
+        }
+        else {
+            setHasLost(true)
         }
     }
 
@@ -58,6 +61,8 @@ Board.propTypes = {
     setScore: PropTypes.func,
     deck: PropTypes.array,
     setDeck: PropTypes.func,
+    setHasLost: PropTypes.func,
+
 }
 
 export default Board;

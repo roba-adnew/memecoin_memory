@@ -11,6 +11,7 @@ function App() {
 		return deck;
 	});
 	const [score, setScore] = useState(0);
+	const [hasLost, setHasLost] = useState(false);
 
 	return (
 		<>
@@ -18,7 +19,9 @@ function App() {
 			<Board
 				deck={deck}
 				setDeck={setDeck}
-				setScore={setScore} />
+				setScore={setScore}
+				setHasLost={setHasLost} />
+			{console.log(hasLost)}
 		</>
 	)
 }
