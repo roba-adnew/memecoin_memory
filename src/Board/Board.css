@@ -1,4 +1,6 @@
-table ,
 td {
-    border: 2px
+    border: solid 2px;
+    width: 200px;
+    height: 100px;
+    text-align: center;
 }

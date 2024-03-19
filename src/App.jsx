@@ -1,14 +1,15 @@
 import { useState } from 'react'
+import Board from './Board/Board.jsx';
+import Score from './Score/Score.jsx';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  setCount(count + 1)
+  const [clicks, setClicks] = useState(0);
 
   return (
     <>
-      {count}
+      <Score clicks={clicks}/>
+      <Board setClicks={setClicks}/>
     </>
   )
 }
