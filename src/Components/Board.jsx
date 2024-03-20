@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './Board.css'
+import '../Styles/Board.css'
 
 function Board({
     deck,

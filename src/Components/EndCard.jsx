@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import PropTypes from 'prop-types'
-import './EndCard.css'
+import '../Styles/EndCard.css'
 
 function EndCard({ hasLost, setHasLost, setScore, setNewDeck }) {
 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Board from './Board/Board.jsx';
-import Score from './Score/Score.jsx';
-import EndCard from './EndCard/EndCard.jsx'
+import Board from './Components/Board.jsx';
+import Score from './Components/Score.jsx';
+import EndCard from './Components/EndCard.jsx'
 import { Card } from './utils/functions.jsx';
 import './App.css'
 
