@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Board from './Board/Board.jsx';
 import Score from './Score/Score.jsx';
+import EndCard from './EndCard/EndCard.jsx'
 import { Card } from './utils/functions.jsx';
 import './App.css'
 
@@ -21,7 +22,10 @@ function App() {
 				setDeck={setDeck}
 				setScore={setScore}
 				setHasLost={setHasLost} />
-			{console.log(hasLost)}
+			<EndCard
+				hasLost={hasLost}
+				setHasLost={setHasLost}
+			/>
 		</>
 	)
 }
