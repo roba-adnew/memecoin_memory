@@ -6,13 +6,17 @@ import { Card } from './utils/functions.jsx';
 import './App.css'
 
 function App() {
-	const [deck, setDeck] = useState(() => {
-		const deckValues = [...Array(25).keys()];
-		const deck = deckValues.map(value => Card(value + 1));
-		return deck;
-	});
+	const [deck, setDeck] = useState(() => makeNewDeck());
 	const [score, setScore] = useState(0);
 	const [hasLost, setHasLost] = useState(false);
+
+	function makeNewDeck() {
+		const deckValues = [...Array(25).keys()];
+		const deck = deckValues.map(value => Card(value + 1));
+		return deck
+	}
+
+	function setNewDeck () { setDeck(makeNewDeck()) }
 
 	return (
 		<>
@@ -25,6 +29,8 @@ function App() {
 			<EndCard
 				hasLost={hasLost}
 				setHasLost={setHasLost}
+				setScore={setScore}
+				setNewDeck={setNewDeck}
 			/>
 		</>
 	)

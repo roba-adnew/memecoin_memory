@@ -2,41 +2,35 @@ import { useRef } from 'react'
 import PropTypes from 'prop-types'
 import './EndCard.css'
 
-function EndCard({ hasLost, setHasLost }) {
+function EndCard({ hasLost, setHasLost, setScore, setNewDeck }) {
 
     const dialogRef = useRef(null);
 
-    function toggleDialog() {
-        if (!dialogRef.current) {
-            return
-        }
-
-        dialogRef.current.hasAttribute('open') ?
-            dialogRef.current.close() :
-            dialogRef.current.showModal();
-
+    function reset() {
+        if (!dialogRef.current) { return }
+        setHasLost(false);
+        setScore(0);
+        setNewDeck();
+        dialogRef.current.close(); 
     }
-
+    
     return (
         <>
             <dialog ref={dialogRef}>
                 <div>Not bad, want to try again?</div>
-                <button
-                    onClick={() => {
-                        toggleDialog();
-                        setHasLost(false);
-                    }}
-                >
+                <button onClick={() => reset()}>
                     Yeah, let&apos;s try again</button>
             </dialog>
             {hasLost && dialogRef.current.showModal()}
         </>
     )
-}
-
-EndCard.propTypes = {
+    }
+    
+    EndCard.propTypes = {
     hasLost: PropTypes.bool,
     setHasLost: PropTypes.func,
-}
-
-export default EndCard;
+    setScore: PropTypes.func,
+    setNewDeck: PropTypes.func,
+    }
+    
+    export default EndCard;
