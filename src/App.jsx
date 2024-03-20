@@ -8,6 +8,7 @@ import './App.css'
 function App() {
 	const [deck, setDeck] = useState(() => makeNewDeck());
 	const [score, setScore] = useState(0);
+	const [highScore, setHighScore] = useState(0);
 	const [hasLost, setHasLost] = useState(false);
 
 	function makeNewDeck() {
@@ -20,11 +21,16 @@ function App() {
 
 	return (
 		<>
-			<Score score={score} />
+			<Score 
+				score={score}
+				highScore={highScore} />
 			<Board
 				deck={deck}
 				setDeck={setDeck}
+				score={score}
 				setScore={setScore}
+				highScore={highScore}
+				setHighScore={setHighScore}
 				setHasLost={setHasLost} />
 			<EndCard
 				hasLost={hasLost}
