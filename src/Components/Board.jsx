@@ -4,7 +4,6 @@ import './Board.css'
 function Board({
     deck,
     setDeck,
-    score,
     setScore,
     highScore,
     setHighScore,
@@ -74,7 +73,6 @@ function Board({
 Board.propTypes = {
     deck: PropTypes.array,
     setDeck: PropTypes.func,
-    score: PropTypes.number,
     setScore: PropTypes.func,
     highScore: PropTypes.number,
     setHighScore: PropTypes.func,
