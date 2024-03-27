@@ -1,11 +1,6 @@
 // import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getPokemon } from '../utils/api.jsx';
 import '../Styles/Board.css'
-
-
-
-
 
 function Board({
     deck,
@@ -53,18 +48,6 @@ function Board({
         }
     }
 
-    // useEffect(() => {
-	// 	getPokemon()
-	// 		.then(imageURL => {
-	// 			console.log(imageURL)
-	// 		})
-	// 		.catch(error => {
-	// 			console.error('Error:', error);
-	// 		});
-	// }, []);
-
-    getPokemon();
-
     return (
         <>
             <table>
@@ -79,7 +62,9 @@ function Board({
                                         handleCardClick(index);
                                     }}
                                 >
-                                    {deck[(5 * rowIndex) + colIndex].value}
+                                    <img
+                                        src={deck[(5*rowIndex)+colIndex].url}>
+                                    </img>
                                 </td>
                             ))}
                         </tr>

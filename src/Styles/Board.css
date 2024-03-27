@@ -1,6 +1,12 @@
 td {
     border: solid 2px;
-    width: 200px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     text-align: center;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain; 
 }

@@ -1,4 +1,5 @@
 async function getPokemon() {
+    
     const getPokemonColorURL = 'https://pokeapi.co/api/v2/pokemon-color/black'
 
     try {
@@ -11,7 +12,7 @@ async function getPokemon() {
             pokemonURLS.slice(0,25) :
             pokemonURLS;
 
-        let pokemonResponses = await Promise.all(
+        const pokemonResponses = await Promise.all(
             pokemonURLS.map(url => {return fetch(url, {mode: 'cors'});
         }))
 
@@ -22,7 +23,7 @@ async function getPokemon() {
                 `https://pokeapi.co/api/v2/pokemon/${pokeResponse.id}/`
         }
 
-        let pokemonIdResponses = await Promise.all(
+        const pokemonIdResponses = await Promise.all(
             pokemonIdUrls.map(url => {return fetch(url, {mode: 'cors'});
         }))
 

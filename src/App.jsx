@@ -1,30 +1,52 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Board from './Components/Board.jsx';
 import Score from './Components/Score.jsx';
 import EndCard from './Components/EndCard.jsx'
-import { Card } from './utils/functions.jsx';
+import { makeNewDeck } from './utils/functions.jsx';
 import './App.css'
 
 
 function App() {
-	const [deck, setDeck] = useState(() => makeNewDeck());
+	const [deck, setDeck] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 	const [score, setScore] = useState(0);
 	const [highScore, setHighScore] = useState(0);
 	const [hasLost, setHasLost] = useState(false);
 
-	function makeNewDeck() {
-		const deckValues = [...Array(25).keys()];
-		const deck = deckValues.map(value => Card(value + 1));
-		return deck
-	}
+	useEffect(() => {
+		async function fetchInitialDeck() {
+			try {
+				const initialDeck = await makeNewDeck();
+				console.log(initialDeck)
+				setDeck(initialDeck);
+			}
+			catch (error) {
+				console.log(`There was an error: ${error}`)
+			}
+			finally {
+				setIsLoading(false)
+			}
+			
+		}
+		fetchInitialDeck();
+	}, []);
 
 	function setNewDeck() { setDeck(makeNewDeck()) }
+	console.log(deck)
 
+	if (isLoading) {
+		return <div>Loading up the deck...</div>
+	}
+
+	if (deck.length === 0) {
+		return <div>Sorry, there was an issue loading the deck</div>
+	}
 	return (
 		<>
 			<Score
 				score={score}
-				highScore={highScore} />
+				highScore={highScore}
+			/>
 			<Board
 				deck={deck}
 				setDeck={setDeck}
@@ -32,14 +54,14 @@ function App() {
 				setScore={setScore}
 				highScore={highScore}
 				setHighScore={setHighScore}
-				setHasLost={setHasLost} />
+				setHasLost={setHasLost}
+			/>
 			<EndCard
 				hasLost={hasLost}
 				setHasLost={setHasLost}
 				setScore={setScore}
 				setNewDeck={setNewDeck}
 			/>
-
 		</>
 	)
 }
