@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { getPokemon } from './api';
 
 async function makeNewDeck() {
-    const spriteUrls = await getPokemon();
+    const spriteUrls = await getPokemon('red');
     const deck = spriteUrls.map(url => {
         let isClicked = false;
         return {

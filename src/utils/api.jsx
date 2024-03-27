@@ -4,9 +4,9 @@ function pickCont25(array) {
     return array.slice(start,25)
 }
 
-async function getPokemon() {
+async function getPokemon(color) {
     
-    const getPokemonColorURL = 'https://pokeapi.co/api/v2/pokemon-color/black'
+    const getPokemonColorURL = `https://pokeapi.co/api/v2/pokemon-color/${color}`
 
     try {
         const colorResponse = await fetch(getPokemonColorURL, {mode: 'cors'});
