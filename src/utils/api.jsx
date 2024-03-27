@@ -1,3 +1,9 @@
+function pickCont25(array) {
+    const viableStart = array.length - 25;
+    const start = Math.round(Math.random * viableStart);
+    return array.slice(start,25)
+}
+
 async function getPokemon() {
     
     const getPokemonColorURL = 'https://pokeapi.co/api/v2/pokemon-color/black'
@@ -9,7 +15,7 @@ async function getPokemon() {
 
         let pokemonURLS = pokemonObjects.map(ob => (ob.url));
         pokemonURLS = pokemonURLS.length > 25 ? 
-            pokemonURLS.slice(0,25) :
+        pickCont25(pokemonURLS) :
             pokemonURLS;
 
         const pokemonResponses = await Promise.all(
