@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import PropTypes from 'prop-types'
 import '../Styles/EndCard.css'
 
-function EndCard({ hasLost, setHasLost, setScore, setNewDeck }) {
+function EndCard({ hasLost, setHasLost, setScore }) {
 
     const dialogRef = useRef(null);
 
@@ -10,7 +10,6 @@ function EndCard({ hasLost, setHasLost, setScore, setNewDeck }) {
         if (!dialogRef.current) { return }
         setHasLost(false);
         setScore(0);
-        setNewDeck();
         dialogRef.current.close(); 
     }
     
@@ -30,7 +29,6 @@ function EndCard({ hasLost, setHasLost, setScore, setNewDeck }) {
     hasLost: PropTypes.bool,
     setHasLost: PropTypes.func,
     setScore: PropTypes.func,
-    setNewDeck: PropTypes.func,
     }
     
     export default EndCard;

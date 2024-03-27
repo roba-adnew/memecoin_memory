@@ -17,11 +17,10 @@ function App() {
 		async function fetchInitialDeck() {
 			try {
 				const initialDeck = await makeNewDeck();
-				console.log(initialDeck)
 				setDeck(initialDeck);
 			}
 			catch (error) {
-				console.log(`There was an error: ${error}`)
+				console.log(`Initial deck error: ${error}`)
 			}
 			finally {
 				setIsLoading(false)
@@ -31,7 +30,22 @@ function App() {
 		fetchInitialDeck();
 	}, []);
 
-	function setNewDeck() { setDeck(makeNewDeck()) }
+	useEffect(() => {
+		async function resetDeck() {
+			try {
+				const newDeck = await makeNewDeck();
+				setDeck(newDeck);
+			}
+			catch (error) {
+				console.log(`New deck error: ${error}`)
+			}
+			finally {
+				setIsLoading(false)
+			}
+		}
+		resetDeck();
+	}, [hasLost]);
+
 	console.log(deck)
 
 	if (isLoading) {
@@ -60,7 +74,6 @@ function App() {
 				hasLost={hasLost}
 				setHasLost={setHasLost}
 				setScore={setScore}
-				setNewDeck={setNewDeck}
 			/>
 		</>
 	)
