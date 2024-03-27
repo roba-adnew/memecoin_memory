@@ -1,5 +1,11 @@
+// import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { getPokemon } from '../utils/api.jsx';
 import '../Styles/Board.css'
+
+
+
+
 
 function Board({
     deck,
@@ -47,26 +53,42 @@ function Board({
         }
     }
 
+    // useEffect(() => {
+	// 	getPokemon()
+	// 		.then(imageURL => {
+	// 			console.log(imageURL)
+	// 		})
+	// 		.catch(error => {
+	// 			console.error('Error:', error);
+	// 		});
+	// }, []);
+
+    getPokemon();
+
     return (
-        <table>
-            <tbody>
-                {dimIndices.map(rowIndex => (
-                    <tr key={rowIndex}>
-                        {dimIndices.map(colIndex => (
-                            <td
-                                key={(5 * rowIndex) + colIndex}
-                                onClick={() => {
-                                    const index = (5 * rowIndex) + colIndex;
-                                    handleCardClick(index);
-                                }}
-                            >
-                                {deck[(5 * rowIndex) + colIndex].value}
-                            </td>
-                        ))}
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <>
+            <table>
+                <tbody>
+                    {dimIndices.map(rowIndex => (
+                        <tr key={rowIndex}>
+                            {dimIndices.map(colIndex => (
+                                <td
+                                    key={(5 * rowIndex) + colIndex}
+                                    onClick={() => {
+                                        const index = (5 * rowIndex) + colIndex;
+                                        handleCardClick(index);
+                                    }}
+                                >
+                                    {deck[(5 * rowIndex) + colIndex].value}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <p>  The game is simple, click as many unique cards as you can. As soon as you click any card twice...</p>
+            <p>...Game Over!</p>
+        </>
     )
 }
 

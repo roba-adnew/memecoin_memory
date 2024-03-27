@@ -5,6 +5,7 @@ import EndCard from './Components/EndCard.jsx'
 import { Card } from './utils/functions.jsx';
 import './App.css'
 
+
 function App() {
 	const [deck, setDeck] = useState(() => makeNewDeck());
 	const [score, setScore] = useState(0);
@@ -17,11 +18,11 @@ function App() {
 		return deck
 	}
 
-	function setNewDeck () { setDeck(makeNewDeck()) }
+	function setNewDeck() { setDeck(makeNewDeck()) }
 
 	return (
 		<>
-			<Score 
+			<Score
 				score={score}
 				highScore={highScore} />
 			<Board
@@ -38,8 +39,11 @@ function App() {
 				setScore={setScore}
 				setNewDeck={setNewDeck}
 			/>
+
 		</>
 	)
 }
 
-export default App
+
+
+export default App;
