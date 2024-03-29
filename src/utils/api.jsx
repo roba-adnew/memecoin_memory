@@ -1,50 +1,71 @@
-function pickCont25(array) {
-    const viableStart = array.length - 25;
+const X = 25; // number pokemon picked
+
+function pickContX(array) {
+    const viableStart = array.length - X;
     const start = Math.round(Math.random * viableStart);
-    return array.slice(start,25)
+    return array.slice(start, X)
+}
+
+function pickRandX(array) {
+    let num_picked = 0;
+    let randArray = []
+    while (num_picked < 25) {
+        const randIndex = Math.round(Math.random() * array.length)
+        randArray.push(array.splice(randIndex, 1))
+        num_picked++;
+    }
+    return randArray
+
 }
 
 async function getPokemon(color) {
-    
+
     const getPokemonColorURL = `https://pokeapi.co/api/v2/pokemon-color/${color}`
 
     try {
-        const colorResponse = await fetch(getPokemonColorURL, {mode: 'cors'});
+        const colorResponse = await fetch(getPokemonColorURL, { mode: 'cors' });
         const colorJSON = await colorResponse.json();
         const pokemonObjects = colorJSON.pokemon_species;
 
-        let pokemonURLS = pokemonObjects.map(ob => (ob.url));
-        pokemonURLS = pokemonURLS.length > 25 ? 
-        pickCont25(pokemonURLS) :
-            pokemonURLS;
+        const pokemonUrlsFull = pokemonObjects.map(ob => (ob.url));
+        // const pokemonUrlsX = pokemonUrlsFull.length > X ?
+        //     pickRandX(pokemonUrlsFull) :
+        //     pokemonUrlsFull;
 
         const pokemonResponses = await Promise.all(
-            pokemonURLS.map(url => {return fetch(url, {mode: 'cors'});
-        }))
+            pokemonUrlsFull.map(url => {
+                return fetch(url, { mode: 'cors' });
+            }))
 
-        let pokemonIdUrls = Array(25);
+        let pokemonIdUrls = Array(pokemonResponses.length);
         for (let i = 0; i < pokemonResponses.length; i++) {
             const pokeResponse = await pokemonResponses[i].json();
-            pokemonIdUrls[i] = 
+            pokemonIdUrls[i] =
                 `https://pokeapi.co/api/v2/pokemon/${pokeResponse.id}/`
         }
 
         const pokemonIdResponses = await Promise.all(
-            pokemonIdUrls.map(url => {return fetch(url, {mode: 'cors'});
-        }))
+            pokemonIdUrls.map(url => {
+                return fetch(url, { mode: 'cors' });
+            }))
 
-        let pokemonSpriteURLs = Array(25);
+        let pokemonSpriteURLs = Array(pokemonIdResponses.length);
         for (let i = 0; i < pokemonIdResponses.length; i++) {
             const pokeIdResponse = await pokemonIdResponses[i].json();
-            pokemonSpriteURLs[i] = 
+            pokemonSpriteURLs[i] =
                 pokeIdResponse.sprites.other.showdown.front_default;
         }
 
-        return pokemonSpriteURLs;
+        const cleanedSprites = pokemonSpriteURLs.filter(url => url !== null);
+        const finalSprites = cleanedSprites.length > X ? 
+            pickRandX(cleanedSprites) :
+            cleanedSprites;
+
+        return finalSprites;
     }
     catch (error) {
-        console.log('There was an issue: ' + error);  
+        console.log('There was an issue: ' + error);
     }
 }
 
-export  { getPokemon };
+export { getPokemon };

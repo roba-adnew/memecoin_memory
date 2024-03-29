@@ -46,7 +46,6 @@ function App() {
 		resetDeck();
 	}, [hasLost]);
 
-	console.log(deck)
 
 	if (isLoading) {
 		return <div>Loading up the deck...</div>
