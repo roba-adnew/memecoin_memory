@@ -12,6 +12,7 @@ function App() {
 	const [score, setScore] = useState(0);
 	const [highScore, setHighScore] = useState(0);
 	const [hasLost, setHasLost] = useState(false);
+	// unnecessary change
 
 	useEffect(() => {
 		async function fetchInitialDeck() {
@@ -77,7 +78,5 @@ function App() {
 		</>
 	)
 }
-
-
 
 export default App;

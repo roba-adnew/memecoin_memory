@@ -1,4 +1,4 @@
-import { num_pokemon } from './constants,jsx'
+import { num_pokemon } from './constants.jsx'
 
 function pickRandom(array) {
     let num_picked = 0;
