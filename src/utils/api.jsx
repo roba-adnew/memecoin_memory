@@ -1,10 +1,9 @@
-const X = 25; // number pokemon picked
+import { num_pokemon } from './constants,jsx'
 
-
-function pickRandX(array) {
+function pickRandom(array) {
     let num_picked = 0;
     let randArray = []
-    while (num_picked < 25) {
+    while (num_picked < num_pokemon) {
         const randIndex = Math.round(Math.random() * array.length)
         randArray.push(array.splice(randIndex, 1))
         num_picked++;
@@ -23,9 +22,6 @@ async function getPokemon(color) {
         const pokemonObjects = colorJSON.pokemon_species;
 
         const pokemonUrlsFull = pokemonObjects.map(ob => (ob.url));
-        // const pokemonUrlsX = pokemonUrlsFull.length > X ?
-        //     pickRandX(pokemonUrlsFull) :
-        //     pokemonUrlsFull;
 
         const pokemonResponses = await Promise.all(
             pokemonUrlsFull.map(url => {
@@ -52,8 +48,8 @@ async function getPokemon(color) {
         }
 
         const cleanedSprites = pokemonSpriteURLs.filter(url => url !== null);
-        const finalSprites = cleanedSprites.length > X ? 
-            pickRandX(cleanedSprites) :
+        const finalSprites = cleanedSprites.length > num_pokemon ? 
+            pickRandom(cleanedSprites) :
             cleanedSprites;
 
         return finalSprites;
