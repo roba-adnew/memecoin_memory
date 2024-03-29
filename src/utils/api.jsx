@@ -1,10 +1,5 @@
 const X = 25; // number pokemon picked
 
-function pickContX(array) {
-    const viableStart = array.length - X;
-    const start = Math.round(Math.random * viableStart);
-    return array.slice(start, X)
-}
 
 function pickRandX(array) {
     let num_picked = 0;
