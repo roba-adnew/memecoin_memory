@@ -57,6 +57,9 @@ function App() {
 	}
 	return (
 		<>
+			<h1>Wait, did I catch this pokemom already?!</h1>
+			<p>  The game is simple, click as many unique cards as you can. As soon as you click any card twice...</p>
+            <p>...Game Over!</p>
 			<Score
 				score={score}
 				highScore={highScore}
@@ -70,6 +73,7 @@ function App() {
 				setHighScore={setHighScore}
 				setHasLost={setHasLost}
 			/>
+			
 			<EndCard
 				hasLost={hasLost}
 				setHasLost={setHasLost}

@@ -71,8 +71,7 @@ function Board({
                     ))}
                 </tbody>
             </table>
-            <p>  The game is simple, click as many unique cards as you can. As soon as you click any card twice...</p>
-            <p>...Game Over!</p>
+            
         </>
     )
 }
